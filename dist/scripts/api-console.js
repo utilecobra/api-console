@@ -1356,18 +1356,18 @@
           }
         };
 
-        $scope.tryIt = function ($event) {
+        $scope.tryIt = function ($event, form) {
           $scope.requestOptions  = null;
           $scope.responseDetails = false;
           $scope.response        = {};
 
-          validateForm($scope.form);
+          validateForm(form);
 
           if (!$scope.context.forceRequest) {
             jQuery($event.currentTarget).closest('form').find('.ng-invalid').first().focus();
           }
 
-          if($scope.context.forceRequest || $scope.form.$valid) {
+          if($scope.context.forceRequest || form.$valid) {
             var url;
             var context         = $scope.context;
             var segmentContexts = resolveSegementContexts($scope.resource.pathSegments, $scope.context.uriParameters.data());
@@ -5773,7 +5773,7 @@ angular.module('ramlConsoleApp').run(['$templateCache', function($templateCache)
     "          <section>\n" +
     "            <div class=\"raml-console-sidebar-row\">\n" +
     "              <div class=\"raml-console-sidebar-action-group\">\n" +
-    "                <button ng-hide=\"showSpinner\" type=\"submit\" class=\"raml-console-sidebar-action raml-console-sidebar-action-{{methodInfo.method}}\" ng-click=\"tryIt($event)\" ng-class=\"{'raml-console-sidebar-action-force':context.forceRequest}\"><span ng-if=\"context.forceRequest\">Force</span> {{methodInfo.method.toUpperCase()}}\n" +
+    "                <button ng-hide=\"showSpinner\" type=\"submit\" class=\"raml-console-sidebar-action raml-console-sidebar-action-{{methodInfo.method}}\" ng-click=\"tryIt($event, form)\" ng-class=\"{'raml-console-sidebar-action-force':context.forceRequest}\"><span ng-if=\"context.forceRequest\">Force</span> {{methodInfo.method.toUpperCase()}}\n" +
     "                </button>\n" +
     "                <button ng-if=\"showSpinner\" type=\"submit\" class=\"raml-console-sidebar-action raml-console-sidebar-action-{{methodInfo.method}} raml-console-sidebar-action-cancel-request\" ng-click=\"cancelRequest()\">Cancel <div class=\"raml-console-spinner-request\" ng-if=\"showSpinner\">Loading ...</div></button>\n" +
     "                <button class=\"raml-console-sidebar-action raml-console-sidebar-action-clear\" ng-click=\"clearFields()\">Clear</button>\n" +
@@ -5904,7 +5904,7 @@ angular.module('ramlConsoleApp').run(['$templateCache', function($templateCache)
     "\n" +
     "    <ol ng-class=\"{'raml-console-resources-container-no-title': disableTitle, 'raml-console-resources-container': !disableTitle}\" id=\"raml-console-resources-container\" class=\"raml-console-resource-list raml-console-resource-list-root raml-console-resources-resourcesCollapsed\">\n" +
     "      <li id=\"raml_documentation\" class=\"raml-console-resource-list-item raml-console-documentation-header\">\n" +
-    "        <div ng-if=\"proxy\" align=\"right\" class=\"raml-console-resource-proxy\">\n" +
+    "        <div ng-if=\"proxy && !disableTryIt\" align=\"right\" class=\"raml-console-resource-proxy\">\n" +
     "          <label for=\"raml-console-api-behind-firewall\">API is behind a firewall <a href=\"http://www.mulesoft.org/documentation/display/current/Accessing+Your+API+Behind+a+Firewall\" target=\"_blank\">(?)</a></label>\n" +
     "          <input id=\"raml-console-api-behind-firewall\" type=\"checkbox\" ng-model=\"disableProxy\" ng-change=\"updateProxyConfig(disableProxy)\">\n" +
     "        </div>\n" +

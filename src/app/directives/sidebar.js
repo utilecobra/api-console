@@ -377,18 +377,18 @@
           }
         };
 
-        $scope.tryIt = function ($event) {
+        $scope.tryIt = function ($event, form) {
           $scope.requestOptions  = null;
           $scope.responseDetails = false;
           $scope.response        = {};
 
-          validateForm($scope.form);
+          validateForm(form);
 
           if (!$scope.context.forceRequest) {
             jQuery($event.currentTarget).closest('form').find('.ng-invalid').first().focus();
           }
 
-          if($scope.context.forceRequest || $scope.form.$valid) {
+          if($scope.context.forceRequest || form.$valid) {
             var url;
             var context         = $scope.context;
             var segmentContexts = resolveSegementContexts($scope.resource.pathSegments, $scope.context.uriParameters.data());
