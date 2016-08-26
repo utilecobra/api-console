@@ -11,7 +11,14 @@
       ng-if="isXML">
     Examples are shown as JSON string for demonstrative purposes only. Actual API output will be in a different format.
   </div>
+  <div class="raml-console-resource-response" ng-if="examples[currentExample].description">
+    <p markdown="examples[currentExample].description" class="raml-console-marked-content"></p>
+  </div>
   <pre class="raml-console-resource-pre">
     <code class="raml-console-hljs" hljs source="getBeatifiedExample(examples[currentExample].content)"></code>
   </pre>
+  <div ng-if="examples[currentExample].testCondition">
+    <span>Test condition:</span>
+    <pre class="raml-console-resource-pre">{{examples[currentExample].testCondition.key}} == {{examples[currentExample].testCondition.value}}</pre>
+  </div>
 </div>

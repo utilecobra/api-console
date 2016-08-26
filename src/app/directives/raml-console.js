@@ -24,10 +24,13 @@
       $scope.allowUnsafeMarkdown        = $attrs.hasOwnProperty('allowUnsafeMarkdown');
       $scope.collapseAll                = collapseAll;
       $scope.credentials                = {};
-      $scope.disableRamlClientGenerator = $attrs.hasOwnProperty('disableRamlClientGenerator');
-      $scope.disableThemeSwitcher       = $attrs.hasOwnProperty('disableThemeSwitcher');
+      //$scope.disableRamlClientGenerator = $attrs.hasOwnProperty('disableRamlClientGenerator');
+      $scope.disableRamlClientGenerator = true;
+      //$scope.disableThemeSwitcher       = $attrs.hasOwnProperty('disableThemeSwitcher');
+      $scope.disableThemeSwitcher       = true;
       $scope.disableTitle               = $attrs.hasOwnProperty('disableTitle');
-      $scope.disableTryIt               = $attrs.hasOwnProperty('disableTryIt');
+      //$scope.disableTryIt               = $attrs.hasOwnProperty('disableTryIt');
+      $scope.disableTryIt               = true;
       $scope.documentationCollapsed     = $attrs.hasOwnProperty('documentationCollapsed');
       $scope.proxy                      = $window.RAML.Settings.proxy;
       $scope.readResourceTraits         = readResourceTraits;

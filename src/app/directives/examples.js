@@ -37,9 +37,23 @@
     } else if (exampleContainer.examples) {
       if (Array.isArray(exampleContainer.examples)) {
         return exampleContainer.examples.map(function (example, index) {
+          var testCondition = {}
+          if (example.annotations && example.annotations.testCondition) {
+            testCondition = example.annotations.testCondition.structuredValue
+          } else {
+            testCondition = null
+          }
+          var description = ""
+          if (example.description) {
+            description = example.description
+          } else {
+            description = null
+          }
           return {
             name: example.name || 'Example ' + index,
-            content: JSON.stringify(example.value, null, 2)
+            content: JSON.stringify(example.structuredValue, null, 2),
+            description: description,
+            testCondition: testCondition
           };
         });
       } else {
